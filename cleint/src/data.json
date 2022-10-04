@@ -1,5 +1,5 @@
 [
-{"id":"id1","title":"Test01","desc":"this is Test01","imageUrl":"images/product01.jpg","price":30,"sizes":["S","M"]},
-{"id":"id2","title":"Test02","desc":"this is Test02","imageUrl":"images/OIP.jpg","price":50,"sizes":["S","M"]},
-{"id":"id3","title":"Test03","desc":"this is Test03","imageUrl":"images/th.jpg","price":70,"sizes":["S","M","L"]},
-{"id":"id3","title":"Test03","desc":"this is Test03","imageUrl":"images/th.jpg","price":70,"sizes":["S","M","L"]}]
+    {"id":"id1","title":"Test01","desc":"this is Test01","imageUrl":"images/product01.jpg","price":30,"sizes":["S","M"]},
+    {"id":"id2","title":"Test02","desc":"this is Test02","imageUrl":"images/OIP.jpg","price":50,"sizes":["S","M"]},
+    {"id":"id3","title":"Test03","desc":"this is Test03","imageUrl":"images/th.jpg","price":70,"sizes":["S","M","L"]},
+    {"id":"id4","title":"Test04","desc":"this is Test04","imageUrl":"images/th.jpg","price":70,"sizes":["S","M","L"]}]
