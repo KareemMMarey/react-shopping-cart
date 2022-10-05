@@ -5,7 +5,7 @@ import data from "./data.json"
 import Product from "./components/Products/Product";
 function App() {
   
-  const [products, setProducts]=useState(data)
+  const [products]=useState(data)
   console.log(products);
   return (
       <div className="layout">
