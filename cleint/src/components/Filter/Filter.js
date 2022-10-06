@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../css/Filter/Filter.css"
 
- function Filter() {
+ function Filter(props) {
   return (
     <div className="filter-wrapper">
         
@@ -9,7 +9,7 @@ import "../../css/Filter/Filter.css"
         <div className="num-of-products">Number of Products 4</div>
         <div className='filter-by-size'>
             <span > Filter</span>
-            <select className="filter-select">
+            <select value={props.size} className="filter-select" onChange={props.handleFilterBySiz}>
                 <option value="ALL">ALL</option>
                 <option value="XS">XS</option>
                 <option value="S">S</option>
@@ -21,10 +21,10 @@ import "../../css/Filter/Filter.css"
         </div>
         <div className='filter-by-size'>
             <span > Filter</span>
-            <select className="filter-select">
-                <option value="latest">Ltest</option>
+            <select value={props.sort} onChange={props.handleFilterByPrice} className="filter-select">
+                <option value="latest">Latest</option>
                 <option value="lowest">Lowest</option>
-                <option value="heighest">Heighest</option>
+                <option value="highest">Heighest</option>
             </select>
         </div>
     </div>
