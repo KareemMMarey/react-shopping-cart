@@ -4,11 +4,14 @@ import Footer from "./components/Footer/Footer";
 import data from "./data.json"
 import Product from "./components/Products/Product";
 import Filter from "./components/Filter/Filter";
+import Cart from "./components/Cart/Cart";
+import { useEffect } from "react";
 function App() {
 
   const [products, setProducts] = useState(data);
   const [sort, setSort] = useState("");
   const [size, setSize] = useState("");
+  const [cartItems, setCart] = useState(JSON.parse(localStorage.getItem('cartItems'))||[]);
   const handleFilterBySiz = (e) => {
     setSize(e.target.value)
     if (e.target.value == "ALL") {
@@ -42,15 +45,47 @@ function App() {
     });
     setProducts(newProducts);
   }
+  const addToCart=(product)=>{
+    const cartItemsClone = [...cartItems];
+    let isProductExist=false;
+    cartItemsClone.forEach(p=>{
+      if(p.id==product.id){
+        p.qty++;
+        isProductExist =true;
+      }
+      
+    });
+    if(!isProductExist){
+      cartItemsClone.push({...product,qty:1});
+    }
+    setCart(cartItemsClone);
+  }
+  const removeFromCart= (product)=>{
+    const cartItemsClone =[...cartItems];
+    setCart(cartItemsClone.filter(p=>p.id!=product.id))
+  }
+
+  // Save to local storage
+  useEffect(()=>{
+    localStorage.setItem('cartItems',JSON.stringify(cartItems))
+  },[cartItems]);
 
   return (
     <div className="layout">
       <Header />
       <main>
         <div className="wrapper">
-          <Product products={products} />
-          <Filter size={size} handleFilterByPrice={handleFilterByPrice} sort={sort} handleFilterBySiz={handleFilterBySiz} />
+          <Product products={products} addToCart={addToCart} />
+          <Filter 
+          size={size} 
+          sort={sort} 
+          productNumber={products.length}
+          handleFilterByPrice={handleFilterByPrice} 
+          
+          handleFilterBySiz={handleFilterBySiz} />
+          
         </div>
+        <Cart cartItems= {cartItems} removeFromCart={removeFromCart}/>
       </main>
       <Footer />
     </div>
