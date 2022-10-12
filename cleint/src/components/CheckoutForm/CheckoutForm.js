@@ -1,12 +1,14 @@
 import React from 'react'
 import "../../css/CheckoutForm/CheckoutForm.css"
 import Input from '../Input/Input';
+import Zoom from 'react-reveal/Zoom'
  function CheckoutForm(props) {
   return (
     <>
-        {props.showForm && 
+    {props.showForm && 
          <div className='checkout-form'>
          <span className='close-icon' onClick={()=>props.setShowForm(false)} > &times;  </span>
+         <Zoom left>
          <form onSubmit={props.submitOrder}>
              <div>
                  
@@ -19,9 +21,14 @@ import Input from '../Input/Input';
                 <button type='submit'> Checkout</button>
              </div>
          </form>
+         </Zoom>
       </div>
          }
     </>
+        
+   
+    
+    
   )
 }
 export default CheckoutForm;
