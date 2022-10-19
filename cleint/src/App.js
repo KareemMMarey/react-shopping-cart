@@ -6,6 +6,9 @@ import Product from "./components/Products/Product";
 import Filter from "./components/Filter/Filter";
 import Cart from "./components/Cart/Cart";
 import { useEffect } from "react";
+
+import {Provider} from 'react-redux'
+import store from './store/store'
 function App() {
 
   const [products, setProducts] = useState(data);
@@ -71,7 +74,8 @@ function App() {
   },[cartItems]);
 
   return (
-    <div className="layout">
+    <Provider store={store}>
+      <div className="layout">
       <Header />
       <main>
         <div className="wrapper">
@@ -89,6 +93,7 @@ function App() {
       </main>
       <Footer />
     </div>
+    </Provider>
 
   );
 }
