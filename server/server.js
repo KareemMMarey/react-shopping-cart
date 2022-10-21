@@ -13,7 +13,7 @@ connect(connectionString,{useNewUrlParser:true,useUnifiedTopology:true}).then(re
 }).catch(err=>console.log(err));
 
 
-app.listen(3000, ()=>{
+app.listen(3001, ()=>{
 
     console.log('server running')
 })

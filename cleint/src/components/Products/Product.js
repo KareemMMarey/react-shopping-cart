@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React,{useState}  from 'react'
+import React,{useEffect, useState}  from 'react'
 import "../../css/Products/Product.css"
 import ProductModal from './ProductModal/ProductModal';
 import Bounce from 'react-reveal/Bounce'
+import {connect } from 'react-redux'
+import { fetchProducts } from '../../store/actions/products';
 
 function Product(props) {
     const [product,setProduct]=useState("");
@@ -12,9 +14,13 @@ function Product(props) {
     const closeModal=()=>{
         setProduct(false);
     }
+    useEffect(()=>{
+        props.fetchProducts()
+    },[])
   return (
     <Bounce left cascade>
-        <div className="product-wrapper">{props.products.map(product=>(
+        <div className="product-wrapper">
+            {props.products&&props.products.length?props.products.map(product=>(
     <div className="product-item" key={product.id}>
         <a href="#" onClick={()=> openModal(product) }><img src={product.imageUrl} alt={product.title}/></a>
             
@@ -23,11 +29,15 @@ function Product(props) {
                 <span>${product.price}</span>
             </div>
             <button onClick={()=>props.addToCart(product)}>Add To Cart</button>
-    </div>))}
+    </div>)):"loading"}
     <ProductModal product={product}  closeModal={closeModal}/>
     </div>
     </Bounce>
     
   )
 }
-export default Product;
+export default connect((state)=>{
+    return {
+        products:state.products.products,
+    }
+}, {fetchProducts})(Product) ;
