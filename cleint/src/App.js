@@ -69,9 +69,9 @@ function App() {
   }
 
   // Save to local storage
-  useEffect(()=>{
+ /* useEffect(()=>{
     localStorage.setItem('cartItems',JSON.stringify(cartItems))
-  },[cartItems]);
+  },[cartItems]);*/
 
   return (
     <Provider store={store}>
