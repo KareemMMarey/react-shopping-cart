@@ -38,6 +38,6 @@ function Product(props) {
 }
 export default connect((state)=>{
     return {
-        products:state.products.products,
+        products:state.products.filterProducts,
     }
 }, {fetchProducts})(Product) ;
