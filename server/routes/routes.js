@@ -1,4 +1,4 @@
-const Product = require('../models/productModel');
+const Product =   require('../models/productModel');
 const express = require('express');
 const router = express.Router();
 router.get('/api/products', async (req,res)=>{
@@ -14,5 +14,7 @@ router.delete('/api/products/:id', async (req,res)=>{
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);
     res.send(deletedProduct);
 })
+
+
 
 module.exports = router
