@@ -3,8 +3,8 @@ import Modal from 'react-modal';
  function OrderModal(props) {
     const {order,closeModal,cartItems} =props;
   return (
-    
-    <Modal isOpen={order} onRequestClose={closeModal}>
+    <>
+    {order && <Modal isOpen={order} onRequestClose={closeModal}>
     <div className='order-info'>
         <span className='close-modal' onClick={closeModal}>&times;</span>
         <p className='alert-success'> Order done successfully
@@ -50,7 +50,8 @@ import Modal from 'react-modal';
             </tr>
         </table>
     </div>
-</Modal>
+</Modal>}
+    </>
   )
 }
 export default OrderModal;
