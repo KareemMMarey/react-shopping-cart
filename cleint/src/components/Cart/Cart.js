@@ -4,26 +4,31 @@ import CheckoutForm from '../CheckoutForm/CheckoutForm';
 import Bounce from 'react-reveal/Bounce'
 import { connect } from 'react-redux';
 import {removeCart} from '../../store/actions/cart'
+import {createOrder,clearOrder} from '../../store/actions/orders'
 import OrderModal from './OrderModal';
 
 function Cart(props) {
     const [showForm, setShowForm] = useState(false);
-    const [order,setOrder]=useState(false);
+    /*const [order,setOrder]=useState(false);*/
     const [value, setvalue] = useState("");
 
     const handleChange = (e) => {
-        console.log(e.target.name)
+        console.log( e.target.value )
         setvalue((prevState) => ({ ...prevState, [e.target.name]: e.target.value }))
     }
-    const closeModal = () => {
-        
-        setOrder(false);
-    }
+    
     const submitOrder = (e) => {
         e.preventDefault();
 
         const order = { name: value.name, email: value.email }
-        setOrder(order);
+        console.log( order )
+        var res = props.createOrder(order);
+        console.log( res )
+    }
+    const closeModal = () => {
+        
+        props.clearOrder();
+        setShowForm(false);
     }
 
     return (
@@ -31,7 +36,7 @@ function Cart(props) {
         <div className="cart-wrapper">
             <div className="cart-title">{props.cartItems.length > 0 ? <p>There is {props.cartItems.length} in the cart</p> : 'Cart empty'}</div>
             
-            <OrderModal cartItems={props.cartItems} closeModal={closeModal} order={order}></OrderModal>
+            <OrderModal cartItems={props.cartItems} closeModal={closeModal} order={props.order}></OrderModal>
             <Bounce bottom>
                 <>
                     <div className="cart-items">
@@ -75,5 +80,7 @@ function Cart(props) {
     )
 }
 export default connect((state)=>{
-    return{cartItems:state.cart.cartItems}
-},{removeCart})(Cart) ;
+    return{
+        order:state.order.order,
+        cartItems:state.cart.cartItems}
+},{removeCart,createOrder,clearOrder})(Cart) ;
