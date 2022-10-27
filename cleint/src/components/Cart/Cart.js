@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import {removeCart} from '../../store/actions/cart'
 import {createOrder,clearOrder} from '../../store/actions/orders'
 import OrderModal from './OrderModal';
+import { words } from '../../words';
 
 function Cart(props) {
     const [showForm, setShowForm] = useState(false);
@@ -34,7 +35,8 @@ function Cart(props) {
     return (
 
         <div className="cart-wrapper">
-            <div className="cart-title">{props.cartItems.length > 0 ? <p>There is {props.cartItems.length} in the cart</p> : 'Cart empty'}</div>
+            <div className="cart-title">{props.cartItems.length > 0 ? 
+            <p>{words.cartHeader} {props.cartItems.length}</p> : 'Cart empty'}</div>
             
             <OrderModal cartItems={props.cartItems} closeModal={closeModal} order={props.order}></OrderModal>
             <Bounce bottom>
@@ -45,11 +47,11 @@ function Cart(props) {
                                 <img src={item.imageUrl} alt={item.title} />
                                 <div className="cart-info">
                                     <div>
-                                        <p>title: {item.title}</p>
-                                        <p>qty:{item.qty}</p>
-                                        <p>{item.price}$</p>
+                                        <p>{words.cartTitle}: {item.title}</p>
+                                        <p>{words.cartQty}:{item.qty}</p>
+                                        <p>{words.cartPrice}:{item.price}$</p>
                                     </div>
-                                    <button onClick={() => props.removeCart(item)}>Remove</button>
+                                    <button onClick={() => props.removeCart(item)}>{words.removeBtn}</button>
                                 </div>
                             </div>
                         )}
@@ -59,10 +61,10 @@ function Cart(props) {
             {
                 props.cartItems.length != 0 &&
                 (<div className="cart-footer">
-                    <div className='total'>Total Price: ${props.cartItems.reduce((acc, p) => {
+                    <div className='total'>{words.cartTotal}: ${props.cartItems.reduce((acc, p) => {
                         return acc + p.price
                     }, 0)}</div>
-                    <button onClick={() => setShowForm(true)}>Select Product</button>
+                    <button onClick={() => setShowForm(true)}>{words.selectProducts}</button>
                 </div>
                 )
             }
