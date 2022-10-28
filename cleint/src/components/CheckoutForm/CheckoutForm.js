@@ -13,10 +13,10 @@ import { words } from '../../words';
          <form onSubmit={props.submitOrder}>
              <div>
                  
-                 <Input label={words.name} type="text" name={words.name} onChange={props.handleChange}/>
+                 <Input label={words.name} type="text" name='name' onChange={props.handleChange}/>
              </div>
              <div>
-             <Input label={words.email} type="email" name={words.email} onChange={props.handleChange}/>
+             <Input label={words.email} type="email" name='email' onChange={props.handleChange}/>
              </div>
              <div>
                 <button type='submit'> {words.checkout}</button>
